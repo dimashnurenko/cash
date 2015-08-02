@@ -1,8 +1,8 @@
 package dmitry.shnurenko.cash.server.dao.cash;
 
+import dmitry.shnurenko.cash.server.dao.AbstractDao;
 import dmitry.shnurenko.cash.server.entity.Cash;
 import org.hibernate.Criteria;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,32 +17,23 @@ import java.util.List;
  * @author Dmitry Shnurenko
  */
 @Component
-final class CashDaoImpl implements CashDao {
-
-    private final SessionFactory factory;
+final class CashDaoImpl extends AbstractDao<Cash> implements CashDao {
 
     @Autowired
     public CashDaoImpl(SessionFactory factory) {
-        this.factory = factory;
+        super(factory);
     }
 
     /** {inheritDoc} */
     @Override
     public void save(@Nonnull Cash cash) {
-        Session session = factory.openSession();
-        session.beginTransaction();
-
-        session.save(cash);
-
-        session.getTransaction().commit();
-        session.close();
+        super.save(cash);
     }
 
     /** {inheritDoc} */
     @Override
     public List<Cash> getAll() {
-        Session session = factory.openSession();
-        session.beginTransaction();
+        startTransaction();
 
         Criteria criteria = session.createCriteria(Cash.class);
 

@@ -9,8 +9,8 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.context.ApplicationContext;
 
-import static dmitry.shnurenko.cash.server.entity.CashType.ADD_CASH;
-import static dmitry.shnurenko.cash.server.entity.CashType.LOAN_CASH;
+import static dmitry.shnurenko.cash.server.entity.OperationType.ADD_CASH;
+import static dmitry.shnurenko.cash.server.entity.OperationType.LOAN_CASH;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 

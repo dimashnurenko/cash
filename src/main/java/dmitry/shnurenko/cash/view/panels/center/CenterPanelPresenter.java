@@ -1,7 +1,7 @@
 package dmitry.shnurenko.cash.view.panels.center;
 
 import dmitry.shnurenko.cash.server.entity.Cash;
-import dmitry.shnurenko.cash.server.entity.CashType;
+import dmitry.shnurenko.cash.server.entity.OperationType;
 import dmitry.shnurenko.cash.server.service.CashService;
 import dmitry.shnurenko.cash.view.TabIndex;
 import dmitry.shnurenko.cash.view.panels.center.CenterPanelView.ActionDelegate;
@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static dmitry.shnurenko.cash.server.entity.CashType.ADD_CASH;
-import static dmitry.shnurenko.cash.server.entity.CashType.LOAN_CASH;
+import static dmitry.shnurenko.cash.server.entity.OperationType.ADD_CASH;
+import static dmitry.shnurenko.cash.server.entity.OperationType.LOAN_CASH;
 
 /**
  * Provides business logic to save different cashes to data base and calls special methods to show
@@ -62,7 +62,7 @@ final class CenterPanelPresenter implements CenterPanel, ActionDelegate {
 
         service.saveToDB(cash);
 
-        CashType type = cash.getCashType();
+        OperationType type = cash.getOperationType();
 
         view.showTable(getCashesByType(type));
         view.selectTab(tabIndex);
@@ -71,9 +71,9 @@ final class CenterPanelPresenter implements CenterPanel, ActionDelegate {
     }
 
     @Nonnull
-    private List<Cash> getCashesByType(@Nonnull CashType type) {
+    private List<Cash> getCashesByType(@Nonnull OperationType type) {
         return cashes.stream()
-                     .filter(cash -> type.equals(cash.getCashType()))
+                     .filter(cash -> type.equals(cash.getOperationType()))
                      .collect(Collectors.toList());
     }
 

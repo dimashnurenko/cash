@@ -2,7 +2,7 @@ package dmitry.shnurenko.cash.view.dialog;
 
 import dmitry.shnurenko.cash.view.panels.center.CenterPanel;
 import dmitry.shnurenko.cash.server.entity.Cash;
-import dmitry.shnurenko.cash.server.entity.CashType;
+import dmitry.shnurenko.cash.server.entity.OperationType;
 import dmitry.shnurenko.cash.server.factories.EntityFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,8 +20,8 @@ import static dmitry.shnurenko.cash.locale.LocaleKey.DIALOG_TITLE_ADD;
 import static dmitry.shnurenko.cash.locale.LocaleKey.DIALOG_TITLE_LOAN;
 import static dmitry.shnurenko.cash.view.dialog.DialogWindowPresenter.PATH_TO_ADD_DIALOG_ICON;
 import static dmitry.shnurenko.cash.view.dialog.DialogWindowPresenter.PATH_TO_LOAN_DIALOG_ICON;
-import static dmitry.shnurenko.cash.server.entity.CashType.ADD_CASH;
-import static dmitry.shnurenko.cash.server.entity.CashType.LOAN_CASH;
+import static dmitry.shnurenko.cash.server.entity.OperationType.ADD_CASH;
+import static dmitry.shnurenko.cash.server.entity.OperationType.LOAN_CASH;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
@@ -79,7 +79,7 @@ public class DialogWindowPresenterTest {
         when(entityFactory.createCash(Matchers.<LocalDateTime>anyObject(),
                                       Matchers.<BigDecimal>anyObject(),
                                       anyString(),
-                                      Matchers.<CashType>anyObject())).thenReturn(cash);
+                                      Matchers.<OperationType>anyObject())).thenReturn(cash);
         presenter.showFor(ADD_CASH);
 
         presenter.onOkButtonClicked(sum, SOME_TEXT);

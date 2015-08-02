@@ -21,8 +21,8 @@ import java.util.concurrent.ExecutionException;
 import static dmitry.shnurenko.cash.locale.Locale.getText;
 import static dmitry.shnurenko.cash.locale.LocaleKey.CAN_NOT_UPDATE_CURRENCY;
 import static dmitry.shnurenko.cash.locale.LocaleKey.CURRENCY_EXCHANGE_UPDATED;
-import static dmitry.shnurenko.cash.server.entity.CashType.ADD_CASH;
-import static dmitry.shnurenko.cash.server.entity.CashType.LOAN_CASH;
+import static dmitry.shnurenko.cash.server.entity.OperationType.ADD_CASH;
+import static dmitry.shnurenko.cash.server.entity.OperationType.LOAN_CASH;
 import static dmitry.shnurenko.cash.view.panels.left.proceed.ProceedPanelPresenter.CURRENCY_EXCHANGE_SITE_URL;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
@@ -105,8 +105,8 @@ public class ProceedPanelPresenterTest {
         Cash cash1 = mock(Cash.class);
         Cash cash2 = mock(Cash.class);
 
-        when(cash1.getCashType()).thenReturn(LOAN_CASH);
-        when(cash2.getCashType()).thenReturn(ADD_CASH);
+        when(cash1.getOperationType()).thenReturn(LOAN_CASH);
+        when(cash2.getOperationType()).thenReturn(ADD_CASH);
 
         when(cash1.getSum()).thenReturn(new BigDecimal(100));
         when(cash2.getSum()).thenReturn(new BigDecimal(200));

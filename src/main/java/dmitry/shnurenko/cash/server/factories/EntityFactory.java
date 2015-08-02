@@ -1,7 +1,7 @@
 package dmitry.shnurenko.cash.server.factories;
 
 import dmitry.shnurenko.cash.server.entity.Cash;
-import dmitry.shnurenko.cash.server.entity.CashType;
+import dmitry.shnurenko.cash.server.entity.OperationType;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Nonnull;
@@ -23,14 +23,14 @@ public class EntityFactory {
      * @param date        date when user add or loan cash
      * @param sum         sum which user add or loan
      * @param description additional information about cash
-     * @param cashType    there are two types. When we add cash type is ADD_CASH and we loan cash type is LOAN_CASH
+     * @param operationType    there are two types. When we add cash type is ADD_CASH and we loan cash type is LOAN_CASH
      * @return an instance of {@link Cash}
      */
     public Cash createCash(@Nonnull LocalDateTime date,
                            @Nonnull BigDecimal sum,
                            @Nullable String description,
-                           @Nonnull CashType cashType) {
+                           @Nonnull OperationType operationType) {
 
-        return new Cash(date, sum, description, cashType);
+        return new Cash(date, sum, description, operationType);
     }
 }

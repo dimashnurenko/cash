@@ -1,7 +1,7 @@
 package dmitry.shnurenko.cash.server.factories;
 
 import dmitry.shnurenko.cash.server.entity.Cash;
-import dmitry.shnurenko.cash.server.entity.CashType;
+import dmitry.shnurenko.cash.server.entity.OperationType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -10,8 +10,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import static dmitry.shnurenko.cash.Utils.DATE_TIME_FORMATTER;
-import static dmitry.shnurenko.cash.server.entity.CashType.ADD_CASH;
+import static dmitry.shnurenko.cash.server.entity.OperationType.ADD_CASH;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -28,13 +27,13 @@ public class EntityFactoryTest {
         LocalDateTime dateTime = LocalDateTime.now();
         BigDecimal sum = new BigDecimal(1);
         String description = "description";
-        CashType type = ADD_CASH;
+        OperationType type = ADD_CASH;
 
         Cash cash = factory.createCash(dateTime, sum, description, type);
 
-        assertEquals(DATE_TIME_FORMATTER.format(dateTime), cash.getDate());
+        assertEquals(dateTime, cash.getDate());
         assertEquals(sum, cash.getSum());
         assertEquals(description, cash.getDescription());
-        assertEquals(type, cash.getCashType());
+        assertEquals(type, cash.getOperationType());
     }
 }

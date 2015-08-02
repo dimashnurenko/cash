@@ -12,8 +12,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 import static dmitry.shnurenko.cash.locale.Locale.getText;
-import static dmitry.shnurenko.cash.locale.LocaleKey.MAIN_WINDOW_BUTTON_ADD;
-import static dmitry.shnurenko.cash.locale.LocaleKey.MAIN_WINDOW_BUTTON_LOAN;
+import static dmitry.shnurenko.cash.locale.LocaleKey.*;
 import static javax.swing.BorderFactory.createBevelBorder;
 
 /**

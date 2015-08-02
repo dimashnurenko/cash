@@ -1,7 +1,7 @@
 package dmitry.shnurenko.cash.view.dialog;
 
 import dmitry.shnurenko.cash.server.entity.Cash;
-import dmitry.shnurenko.cash.server.entity.CashType;
+import dmitry.shnurenko.cash.server.entity.OperationType;
 import dmitry.shnurenko.cash.server.factories.EntityFactory;
 import dmitry.shnurenko.cash.view.TabIndex;
 import dmitry.shnurenko.cash.view.panels.center.CenterPanel;
@@ -41,8 +41,8 @@ final class DialogWindowPresenter implements DialogWindow, DialogWindowView.Acti
     private final ImageIcon addCashImage;
     private final ImageIcon loanCashImage;
 
-    private CashType currentType;
-    private TabIndex activeTab;
+    private OperationType currentType;
+    private TabIndex      activeTab;
 
     @Autowired
     public DialogWindowPresenter(DialogWindowView view, CenterPanel centerPanel, EntityFactory entityFactory) {
@@ -58,10 +58,10 @@ final class DialogWindowPresenter implements DialogWindow, DialogWindowView.Acti
 
     /** {inheritDoc} */
     @Override
-    public void showFor(@Nonnull CashType cashType) {
-        currentType = cashType;
+    public void showFor(@Nonnull OperationType operationType) {
+        currentType = operationType;
 
-        switch (cashType) {
+        switch (operationType) {
             case ADD_CASH:
                 view.setTitle(getText(DIALOG_TITLE_ADD));
                 view.setImage(addCashImage.getImage());

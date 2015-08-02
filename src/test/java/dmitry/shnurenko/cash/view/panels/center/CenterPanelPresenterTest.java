@@ -16,8 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static dmitry.shnurenko.cash.view.TabIndex.*;
-import static dmitry.shnurenko.cash.server.entity.CashType.ADD_CASH;
-import static dmitry.shnurenko.cash.server.entity.CashType.LOAN_CASH;
+import static dmitry.shnurenko.cash.server.entity.OperationType.ADD_CASH;
+import static dmitry.shnurenko.cash.server.entity.OperationType.LOAN_CASH;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
@@ -74,13 +74,13 @@ public class CenterPanelPresenterTest {
 
     @Test
     public void cashShouldBeSaved() {
-        when(cash.getCashType()).thenReturn(ADD_CASH);
+        when(cash.getOperationType()).thenReturn(ADD_CASH);
         reset(view);
 
         presenter.saveCashToDB(cash, ADD_CASH_TAB);
 
         verify(service).saveToDB(cash);
-        verify(cash, times(3)).getCashType();
+        verify(cash, times(3)).getOperationType();
 
         verify(view).showTable(cashListCaptor.capture());
 
@@ -104,7 +104,7 @@ public class CenterPanelPresenterTest {
     @Test
     public void onAddTabClicked() {
         reset(view);
-        when(cash.getCashType()).thenReturn(ADD_CASH);
+        when(cash.getOperationType()).thenReturn(ADD_CASH);
 
         presenter.onTabClicked(ADD_CASH_TAB);
 
@@ -118,7 +118,7 @@ public class CenterPanelPresenterTest {
     @Test
     public void onLoanTabClicked() {
         reset(view);
-        when(cash.getCashType()).thenReturn(LOAN_CASH);
+        when(cash.getOperationType()).thenReturn(LOAN_CASH);
 
         presenter.onTabClicked(LOAN_CASH_TAB);
 

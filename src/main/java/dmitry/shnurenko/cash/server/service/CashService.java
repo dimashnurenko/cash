@@ -20,5 +20,5 @@ public interface CashService {
     void saveToDB(@Nonnull Cash cash);
 
     /** Gets all cashes from data base. */
-    List<Cash> getAll();
+    @Nonnull List<Cash> getAll();
 }

@@ -6,8 +6,6 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import static dmitry.shnurenko.cash.Utils.DATE_TIME_FORMATTER;
-
 /**
  * The class represents entity {@link Cash}. This entity stores information about added cash by user.
  * The information contains data of payment, sum and short description. Description is not necessary and
@@ -31,7 +29,7 @@ public class Cash {
     @Column(name = "description")
     private String        description;
     @Column(name = "type")
-    private CashType      cashType;
+    private OperationType operationType;
 
     public Cash() {
     }
@@ -39,16 +37,16 @@ public class Cash {
     public Cash(@Nonnull LocalDateTime date,
                 @Nonnull BigDecimal sum,
                 @Nullable String description,
-                @Nonnull CashType cashType) {
+                @Nonnull OperationType operationType) {
         this.date = date;
         this.sum = sum;
         this.description = description;
-        this.cashType = cashType;
+        this.operationType = operationType;
     }
 
     @Nonnull
-    public String getDate() {
-        return DATE_TIME_FORMATTER.format(date);
+    public LocalDateTime getDate() {
+        return date;
     }
 
     public BigDecimal getSum() {
@@ -61,7 +59,7 @@ public class Cash {
     }
 
     @Nonnull
-    public CashType getCashType() {
-        return cashType;
+    public OperationType getOperationType() {
+        return operationType;
     }
 }

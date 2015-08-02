@@ -1,6 +1,6 @@
 package dmitry.shnurenko.cash.view.dialog;
 
-import dmitry.shnurenko.cash.server.entity.CashType;
+import dmitry.shnurenko.cash.server.entity.OperationType;
 
 import javax.annotation.Nonnull;
 
@@ -15,7 +15,7 @@ public interface DialogWindow {
      * Shows displaying of dialog window for current type. Each type has itself displaying (for example title of
      * dialog and other labels which depends on type).
      *
-     * @param cashType type for which need show dialog
+     * @param operationType type for which need show dialog
      */
-    void showFor(@Nonnull CashType cashType);
+    void showFor(@Nonnull OperationType operationType);
 }

@@ -6,6 +6,6 @@ package dmitry.shnurenko.cash.server.entity;
  *
  * @author Dmitry Shnurenko
  */
-public enum CashType {
+public enum OperationType {
     ADD_CASH, LOAN_CASH
 }

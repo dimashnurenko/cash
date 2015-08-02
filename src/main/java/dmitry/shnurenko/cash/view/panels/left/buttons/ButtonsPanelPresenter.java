@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Nonnull;
 import javax.swing.*;
 
-import static dmitry.shnurenko.cash.server.entity.CashType.ADD_CASH;
-import static dmitry.shnurenko.cash.server.entity.CashType.LOAN_CASH;
+import static dmitry.shnurenko.cash.server.entity.OperationType.ADD_CASH;
+import static dmitry.shnurenko.cash.server.entity.OperationType.LOAN_CASH;
 
 /**
  * Contains business logic processing tabs which allows react on users actions.

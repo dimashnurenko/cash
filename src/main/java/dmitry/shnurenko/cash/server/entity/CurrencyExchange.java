@@ -5,8 +5,6 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import static dmitry.shnurenko.cash.Utils.DATE_TIME_FORMATTER;
-
 /**
  * The class represents entity {@link CurrencyExchange}. This entity stores information about currency exchange.
  * The information contains date of currency update and data about different currency exchange courses.
@@ -37,8 +35,8 @@ public class CurrencyExchange {
     }
 
     @Nonnull
-    public String getDate() {
-        return DATE_TIME_FORMATTER.format(date);
+    public LocalDateTime getDate() {
+        return date;
     }
 
     @Nonnull

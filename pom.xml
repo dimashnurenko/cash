@@ -89,13 +89,6 @@
             <artifactId>jsr305</artifactId>
             <version>${findbugs.version}</version>
         </dependency>
-
-        <!--drawing graphics-->
-        <dependency>
-            <groupId>com.xeiam.xchart</groupId>
-            <artifactId>xchart</artifactId>
-            <version>${drawing.graphics.version}</version>
-        </dependency>
     </dependencies>
 
     <build>

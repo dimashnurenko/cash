@@ -15,6 +15,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import static dmitry.shnurenko.cash.Utils.DATE_TIME_FORMATTER;
+
 /**
  * The class contains business logic which allows connect to definite site and get information
  * about currency exchange.
@@ -57,8 +59,10 @@ final class CurrencyExchangeFinderImpl implements CurrencyExchangeFinder {
                   .setUSDCourse(isExchangeExist ? exchange.getUsdCourse() : new BigDecimal(DEFAULT_USD_COURSE))
                   .setRUBCourse(isExchangeExist ? exchange.getRubCourse() : new BigDecimal(DEFAULT_RUB_COURSE));
 
-            throw new UnknownHostException("Can't connect to internet. The currency exchange is actual on " +
-                                                   (isExchangeExist ? exchange.getDate() : " 27.06.2015"));
+            throw new UnknownHostException(
+                    "Can't connect to internet. The currency exchange is actual on " +
+                            (isExchangeExist ? DATE_TIME_FORMATTER.format(exchange.getDate()) : " 27.06.2015")
+            );
         }
     }
 
@@ -78,8 +82,7 @@ final class CurrencyExchangeFinderImpl implements CurrencyExchangeFinder {
                                                             .setEURCourse(eurFuture.get())
                                                             .setRUBCourse(rubFuture.get()).build();
         if (isConnected) {
-            Runnable saveCurrencyThread = () -> exchangeDao.save(currencyExchange);
-            new Thread(saveCurrencyThread).start();
+            exchangeDao.save(currencyExchange);
         }
 
         return currencyExchange;

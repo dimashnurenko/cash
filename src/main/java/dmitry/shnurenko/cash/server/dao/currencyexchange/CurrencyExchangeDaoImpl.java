@@ -1,8 +1,8 @@
 package dmitry.shnurenko.cash.server.dao.currencyexchange;
 
+import dmitry.shnurenko.cash.server.dao.AbstractDao;
 import dmitry.shnurenko.cash.server.entity.CurrencyExchange;
 import org.hibernate.Criteria;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,35 +17,26 @@ import javax.annotation.Nonnull;
  * @author Dmitry Shnurenko
  */
 @Component
-final class CurrencyExchangeDaoImpl implements CurrencyExchangeDao {
+final class CurrencyExchangeDaoImpl extends AbstractDao<CurrencyExchange> implements CurrencyExchangeDao {
 
     private static final String ID_COLUMN = "id";
 
-    private final SessionFactory sessionFactory;
-
     @Autowired
     public CurrencyExchangeDaoImpl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+        super(sessionFactory);
     }
 
     /** {inheritDoc} */
     @Override
     public void save(@Nonnull CurrencyExchange currencyExchange) {
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-
-        session.save(currencyExchange);
-
-        session.getTransaction().commit();
-        session.close();
+        super.save(currencyExchange);
     }
 
     /** {inheritDoc} */
     @Nonnull
     @Override
     public CurrencyExchange getLastSaved() {
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
+        startTransaction();
 
         Criteria criteria = session.createCriteria(CurrencyExchange.class)
                                    .addOrder(Order.desc(ID_COLUMN))

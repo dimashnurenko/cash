@@ -10,6 +10,7 @@ import javax.swing.table.TableModel;
 import java.util.Arrays;
 import java.util.List;
 
+import static dmitry.shnurenko.cash.Utils.DATE_TIME_FORMATTER;
 import static dmitry.shnurenko.cash.locale.Locale.getText;
 import static dmitry.shnurenko.cash.locale.LocaleKey.*;
 
@@ -53,7 +54,7 @@ final class CashTableImpl extends JTable implements CashTable {
             public Object getValueAt(int rowIndex, int columnIndex) {
                 switch (columnIndex) {
                     case 0:
-                        return list.get(rowIndex).getDate();
+                        return DATE_TIME_FORMATTER.format(list.get(rowIndex).getDate());
                     case 1:
                         return list.get(rowIndex).getSum().doubleValue();
                     case 2:

@@ -11,6 +11,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.UnknownHostException;
+import java.time.LocalDateTime;
 
 import static dmitry.shnurenko.cash.server.currency.CurrencyExchangeFinderImpl.*;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -56,6 +57,7 @@ public class CurrencyExchangeFinderImplTest {
     public void exceptionShouldBeThrownWhenConnectionLostAndExchangeIsExist() throws Exception {
         doThrow(IOException.class).when(parser).connect(SOME_TEXT);
         when(exchangeDao.getLastSaved()).thenReturn(currencyExchange);
+        when(currencyExchange.getDate()).thenReturn(LocalDateTime.now());
 
         when(parser.setUSDCourse(Matchers.<BigDecimal>anyObject())).thenReturn(parser);
         when(parser.setEURCourse(Matchers.<BigDecimal>anyObject())).thenReturn(parser);

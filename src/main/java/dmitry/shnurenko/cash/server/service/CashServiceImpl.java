@@ -31,6 +31,7 @@ final class CashServiceImpl implements CashService {
 
     /** {inheritDoc} */
     @Override
+    @Nonnull
     public List<Cash> getAll() {
         return dao.getAll();
     }

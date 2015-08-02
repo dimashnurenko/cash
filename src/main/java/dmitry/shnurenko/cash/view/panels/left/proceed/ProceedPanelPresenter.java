@@ -2,7 +2,6 @@ package dmitry.shnurenko.cash.view.panels.left.proceed;
 
 import dmitry.shnurenko.cash.server.currency.CurrencyExchangeFinder;
 import dmitry.shnurenko.cash.server.entity.Cash;
-import dmitry.shnurenko.cash.server.entity.CashType;
 import dmitry.shnurenko.cash.server.entity.CurrencyExchange;
 import dmitry.shnurenko.cash.view.panels.notification.NotificationPanel;
 import dmitry.shnurenko.cash.view.panels.right.currencyinfo.CurrencyInfo;
@@ -16,10 +15,10 @@ import java.net.UnknownHostException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import static dmitry.shnurenko.cash.Utils.calculateAddedSum;
 import static dmitry.shnurenko.cash.locale.Locale.getText;
 import static dmitry.shnurenko.cash.locale.LocaleKey.CAN_NOT_UPDATE_CURRENCY;
 import static dmitry.shnurenko.cash.locale.LocaleKey.CURRENCY_EXCHANGE_UPDATED;
-import static dmitry.shnurenko.cash.server.entity.CashType.LOAN_CASH;
 
 /**
  * The class contains business logic which allows connect to any site and get information about proceed
@@ -71,18 +70,7 @@ final class ProceedPanelPresenter implements ProceedPanel {
     /** {inheritDoc} */
     @Override
     public void updateInfo(@Nonnull List<Cash> cashes) {
-        BigDecimal sumAdded = new BigDecimal(0);
-
-        for (Cash cash : cashes) {
-            CashType cashType = cash.getCashType();
-            BigDecimal sum = cash.getSum();
-
-            if (LOAN_CASH.equals(cashType)) {
-                sumAdded = sumAdded.subtract(sum);
-            } else {
-                sumAdded = sumAdded.add(sum);
-            }
-        }
+        BigDecimal sumAdded = calculateAddedSum(cashes);
 
         exchangeProvider.setSumInUAH(sumAdded);
 
